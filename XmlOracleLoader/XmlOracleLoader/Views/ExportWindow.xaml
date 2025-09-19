@@ -1,0 +1,17 @@
+﻿<Window x:Class="XmlOracleLoader.Views.ExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XmlOracleLoader.Views"
+        mc:Ignorable="d"
+        Title="Export Window" Height="250" Width="450">
+    <StackPanel Margin="20">
+        <TextBlock Text="Select the export type:" Margin="0 0 0 10"/>
+        <ComboBox x:Name="DataTypeComboBox" SelectedIndex="0">
+            <ComboBoxItem Content="Material map"/>
+            <ComboBoxItem Content="Warehouse status"/>
+        </ComboBox>
+        <Button Content="Export" Margin="0 20 0 0" Click="ExportButton_Click"/>
+    </StackPanel>
+</Window>
