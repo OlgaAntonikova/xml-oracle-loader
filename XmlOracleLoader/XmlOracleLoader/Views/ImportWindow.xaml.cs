@@ -2,9 +2,10 @@
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
-using XmlOracleLoader.Models;
+using System.Xml.Linq;
+using XmlOracleLoader.Core.Models;
 using XmlOracleLoader.Oracle;
-using XmlOracleLoader.Services;
+using XmlOracleLoader.Core.Services;
 
 namespace XmlOracleLoader.Views
 {
@@ -56,7 +57,8 @@ namespace XmlOracleLoader.Views
         private List<ItemNode> LoadItemsFromXml(string path)
         {
             var parser = new XmlValueTableParser();
-            List<ItemNode> items = parser.Parse(path);
+            var doc = XDocument.Load(path);
+            List<ItemNode> items = parser.Parse(doc);
             return items;
         }
 

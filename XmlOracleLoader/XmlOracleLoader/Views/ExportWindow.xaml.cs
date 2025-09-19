@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
-using XmlOracleLoader.Models;
+using XmlOracleLoader.Core.Models;
 using XmlOracleLoader.Oracle;
 
 namespace XmlOracleLoader.Views

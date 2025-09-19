@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlOracleLoader", "XmlOracleLoader\XmlOracleLoader.csproj", "{2CE8BE6E-9BE0-423C-B7F1-B6C01EDA22D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlOracleLoader", "XmlOracleLoader\XmlOracleLoader.csproj", "{2CE8BE6E-9BE0-423C-B7F1-B6C01EDA22D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlOracleLoader.Core", "XmlOracleLoader.Core\XmlOracleLoader.Core.csproj", "{1EC11082-13D8-4E31-8F14-9D8845D925FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlOracleLoader.Tests", "XmlOracleLoader.Tests\XmlOracleLoader.Tests.csproj", "{606E5DDF-CAF0-441C-81E1-E0429319D749}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2CE8BE6E-9BE0-423C-B7F1-B6C01EDA22D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CE8BE6E-9BE0-423C-B7F1-B6C01EDA22D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CE8BE6E-9BE0-423C-B7F1-B6C01EDA22D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC11082-13D8-4E31-8F14-9D8845D925FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC11082-13D8-4E31-8F14-9D8845D925FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC11082-13D8-4E31-8F14-9D8845D925FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC11082-13D8-4E31-8F14-9D8845D925FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{606E5DDF-CAF0-441C-81E1-E0429319D749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606E5DDF-CAF0-441C-81E1-E0429319D749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606E5DDF-CAF0-441C-81E1-E0429319D749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606E5DDF-CAF0-441C-81E1-E0429319D749}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
