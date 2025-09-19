@@ -1,5 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
-using XmlOracleLoader.Models;
+using XmlOracleLoader.Core.Models;
 
 namespace XmlOracleLoader.Oracle
 {

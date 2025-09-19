@@ -1,4 +1,4 @@
-﻿namespace XmlOracleLoader.Models
+﻿namespace XmlOracleLoader.Core.Models
 {
     public class ItemNode
     {

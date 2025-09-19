@@ -1,6 +1,6 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System.Globalization;
-using XmlOracleLoader.Models;
+using XmlOracleLoader.Core.Models;
 
 namespace XmlOracleLoader.Oracle
 {

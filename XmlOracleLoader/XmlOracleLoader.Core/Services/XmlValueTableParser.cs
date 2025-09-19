@@ -1,16 +1,15 @@
 ﻿using System.Xml.Linq;
-using XmlOracleLoader.Models;
+using XmlOracleLoader.Core.Models;
 
-namespace XmlOracleLoader.Services
+namespace XmlOracleLoader.Core.Services
 {
     public class XmlValueTableParser
     {
         public List<string> ColumnNames { get; private set; } = new List<string>();
 
-        public List<ItemNode> Parse(string path)
+        public List<ItemNode> Parse(XDocument doc)
         {
             XNamespace ns = "http://v8.1c.ru/8.1/data/core";
-            var doc = XDocument.Load(path);
             var root = doc.Root;
 
             if (root?.Name.LocalName != "ValueTable")
