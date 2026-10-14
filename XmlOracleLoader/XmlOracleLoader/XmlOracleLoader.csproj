@@ -9,17 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="23.9.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\XmlOracleLoader.Core\XmlOracleLoader.Core.csproj" />
+    <ProjectReference Include="..\XmlOracleLoader.ViewModels\XmlOracleLoader.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.26.301" />
   </ItemGroup>
 
 </Project>

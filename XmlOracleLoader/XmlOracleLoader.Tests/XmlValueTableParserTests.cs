@@ -1,6 +1,5 @@
-﻿using XmlOracleLoader.Core.Services;
-using FluentAssertions;
 using System.Xml.Linq;
+using XmlOracleLoader.Core.Services;
 
 namespace XmlOracleLoader.Tests
 {
@@ -8,17 +7,10 @@ namespace XmlOracleLoader.Tests
     {
         private const string Ns = "http://v8.1c.ru/8.1/data/core";
 
-        private static string WriteTempXml(string xml)
-        {
-            var path = Path.GetTempFileName();
-            File.WriteAllText(path, xml);
-            return path;
-        }
-
         [Fact]
         public void Parse_ReturnsRowsAndColumns()
         {
-            var xml = $@"
+            var doc = XDocument.Parse($@"
 <ValueTable xmlns=""{Ns}"">
   <column><Name>Code</Name></column>
   <column><Name>Name</Name></column>
@@ -34,26 +26,23 @@ namespace XmlOracleLoader.Tests
     <Value>Sketchbook</Value>
     <Value>4.99</Value>
   </row>
-</ValueTable>";
-
-            var path = WriteTempXml(xml);
+</ValueTable>");
             var parser = new XmlValueTableParser();
 
-            var doc = XDocument.Load(path);
             var rows = parser.Parse(doc);
 
-            parser.ColumnNames.Should().BeEquivalentTo(new[] { "Code", "Name", "Price" });
-            rows.Should().HaveCount(2);
-            rows[0].Properties["Code"].Should().Be("P-001");
-            rows[0].Properties["Name"].Should().Be("Crayon Set");
-            rows[0].Properties["Price"].Should().Be("10.50");
-            rows[1].Properties["Code"].Should().Be("P-002");
+            Assert.Equal(new[] { "Code", "Name", "Price" }, parser.ColumnNames);
+            Assert.Equal(2, rows.Count);
+            Assert.Equal("P-001", rows[0].Properties["Code"]);
+            Assert.Equal("Crayon Set", rows[0].Properties["Name"]);
+            Assert.Equal("10.50", rows[0].Properties["Price"]);
+            Assert.Equal("P-002", rows[1].Properties["Code"]);
         }
 
         [Fact]
         public void Parse_IgnoresExtraValues_WhenMoreValuesThanColumns()
         {
-            var xml = $@"
+            var doc = XDocument.Parse($@"
 <ValueTable xmlns=""{Ns}"">
   <column><Name>Code</Name></column>
   <column><Name>Name</Name></column>
@@ -63,45 +52,36 @@ namespace XmlOracleLoader.Tests
     <Value>Crayon</Value>
     <Value>EXTRA-IGNORED</Value>
   </row>
-</ValueTable>";
-
-            var path = WriteTempXml(xml);
+</ValueTable>");
             var parser = new XmlValueTableParser();
 
-            var doc = XDocument.Load(path);
             var rows = parser.Parse(doc);
 
-            rows.Should().HaveCount(1);
-            rows[0].Properties.Should().ContainKeys("Code", "Name");
-            rows[0].Properties.Should().NotContainKey("EXTRA"); 
+            var row = Assert.Single(rows);
+            Assert.Equal(new[] { "Code", "Name" }, row.Properties.Keys);
+            Assert.DoesNotContain("EXTRA-IGNORED", row.Properties.Values);
         }
 
         [Fact]
         public void Parse_Throws_WhenRootIsNotValueTable()
         {
-            var xml = $@"<Root xmlns=""{Ns}""></Root>";
-            var path = WriteTempXml(xml);
+            var doc = XDocument.Parse($@"<Root xmlns=""{Ns}""></Root>");
             var parser = new XmlValueTableParser();
 
-            var doc = XDocument.Load(path);
-            Action act = () => parser.Parse(doc);
+            var ex = Assert.ThrowsAny<Exception>(() => parser.Parse(doc));
 
-            act.Should().Throw<Exception>()
-               .WithMessage("*ValueTable*");
+            Assert.Contains("ValueTable", ex.Message);
         }
 
         [Fact]
         public void Parse_Throws_WhenNoColumns()
         {
-            var xml = $@"<ValueTable xmlns=""{Ns}""></ValueTable>";
-            var path = WriteTempXml(xml);
+            var doc = XDocument.Parse($@"<ValueTable xmlns=""{Ns}""></ValueTable>");
             var parser = new XmlValueTableParser();
 
-            var doc = XDocument.Load(path);
-            Action act = () => parser.Parse(doc);
+            var ex = Assert.ThrowsAny<Exception>(() => parser.Parse(doc));
 
-            act.Should().Throw<Exception>()
-               .WithMessage("*Columns not found*");
+            Assert.Contains("Columns not found", ex.Message);
         }
     }
 }
