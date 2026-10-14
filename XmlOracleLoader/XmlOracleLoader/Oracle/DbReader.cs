@@ -1,11 +1,12 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using XmlOracleLoader.Core.Data;
 using XmlOracleLoader.Core.Models;
 
 namespace XmlOracleLoader.Oracle
 {
    internal class DbReader : DbConnector
     {
-        public DbReader(string ipAddress) : base(ipAddress) { }
+        public DbReader(DbSettings settings) : base(settings) { }
 
         internal List<ItemNode> ReadFromDB()
         {

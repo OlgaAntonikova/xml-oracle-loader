@@ -78,10 +78,11 @@ namespace XmlOracleLoader.Views
         // Read data from DB
         private List<ItemNode> LoadItemsFromDb()
         {
-            // Read from App.config
-            var ipAddress = ConfigurationManager.AppSettings["DbHost"];
+            var settings = AppDbSettings.TryLoad();
+            if (settings == null)
+                return new List<ItemNode>();
 
-            var reader = new DbReader(ipAddress);
+            var reader = new DbReader(settings);
 
             return reader.ReadFromDB();
         }
