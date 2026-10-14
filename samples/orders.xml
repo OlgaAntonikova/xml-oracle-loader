@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueTable xmlns="http://v8.1c.ru/8.1/data/core" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<column>
+		<Name xsi:type="xs:string">НомерЗаказа</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">ДатаОтгрузки</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">Количество</Name>
+		<ValueType>
+			<Type>xs:decimal</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">ОбозначениеПродукции</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">НаименованиеПродукции</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">КоличествоНаИзделие</Name>
+		<ValueType>
+			<Type>xs:decimal</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">Обозначение</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">Наименование</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">ЕдиницаИзмерения</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">ДлинаВеревки</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">МаршрутДвижения</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">ГруппаИзделия</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">КлассИзделия</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">ЭтоУпаковка</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">КоличествоОтгрузка</Name>
+		<ValueType>
+			<Type>xs:decimal</Type>
+		</ValueType>
+	</column>
+	<column>
+		<Name xsi:type="xs:string">УкрупненноеПроизводственноеЗадание</Name>
+		<ValueType>
+			<Type>xs:string</Type>
+		</ValueType>
+	</column>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0141</Value>
+		<Value xsi:type="xs:string">2026-11-03</Value>
+		<Value xsi:type="xs:decimal">40</Value>
+		<Value xsi:type="xs:string">RP-10-60</Value>
+		<Value xsi:type="xs:string">Dynamic rope 10 mm, 60 m</Value>
+		<Value xsi:type="xs:decimal">62</Value>
+		<Value xsi:type="xs:string">MAT-PA6-Y</Value>
+		<Value xsi:type="xs:string">Polyamide 6 yarn</Value>
+		<Value xsi:type="xs:string">kg</Value>
+		<Value xsi:type="xs:string">60</Value>
+		<Value xsi:type="xs:string">Braiding > Heat set > Packing</Value>
+		<Value xsi:type="xs:string">Climbing ropes</Value>
+		<Value xsi:type="xs:string">Dynamic</Value>
+		<Value xsi:type="xs:string">No</Value>
+		<Value xsi:type="xs:decimal">0</Value>
+		<Value xsi:type="xs:string">PT-2026-11-A</Value>
+	</row>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0141</Value>
+		<Value xsi:type="xs:string">2026-11-03</Value>
+		<Value xsi:type="xs:decimal">40</Value>
+		<Value xsi:type="xs:string">RP-10-60</Value>
+		<Value xsi:type="xs:string">Dynamic rope 10 mm, 60 m</Value>
+		<Value xsi:type="xs:decimal">1</Value>
+		<Value xsi:type="xs:string">MAT-BAG-60</Value>
+		<Value xsi:type="xs:string">Rope bag 60 m</Value>
+		<Value xsi:type="xs:string">pcs</Value>
+		<Value xsi:type="xs:string">60</Value>
+		<Value xsi:type="xs:string">Packing</Value>
+		<Value xsi:type="xs:string">Climbing ropes</Value>
+		<Value xsi:type="xs:string">Dynamic</Value>
+		<Value xsi:type="xs:string">Yes</Value>
+		<Value xsi:type="xs:decimal">0</Value>
+		<Value xsi:type="xs:string">PT-2026-11-A</Value>
+	</row>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0142</Value>
+		<Value xsi:type="xs:string">2026-11-05</Value>
+		<Value xsi:type="xs:decimal">25</Value>
+		<Value xsi:type="xs:string">RP-9.5-70</Value>
+		<Value xsi:type="xs:string">Dynamic rope 9.5 mm, 70 m</Value>
+		<Value xsi:type="xs:decimal">68.5</Value>
+		<Value xsi:type="xs:string">MAT-PA6-Y</Value>
+		<Value xsi:type="xs:string">Polyamide 6 yarn</Value>
+		<Value xsi:type="xs:string">kg</Value>
+		<Value xsi:type="xs:string">70</Value>
+		<Value xsi:type="xs:string">Braiding > Dry treatment > Packing</Value>
+		<Value xsi:type="xs:string">Climbing ropes</Value>
+		<Value xsi:type="xs:string">Dynamic</Value>
+		<Value xsi:type="xs:string">No</Value>
+		<Value xsi:type="xs:decimal">0</Value>
+		<Value xsi:type="xs:string">PT-2026-11-A</Value>
+	</row>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0142</Value>
+		<Value xsi:type="xs:string">2026-11-05</Value>
+		<Value xsi:type="xs:decimal">25</Value>
+		<Value xsi:type="xs:string">RP-9.5-70</Value>
+		<Value xsi:type="xs:string">Dynamic rope 9.5 mm, 70 m</Value>
+		<Value xsi:type="xs:decimal">0.4</Value>
+		<Value xsi:type="xs:string">MAT-DRY-C</Value>
+		<Value xsi:type="xs:string">Dry coating</Value>
+		<Value xsi:type="xs:string">l</Value>
+		<Value xsi:type="xs:string">70</Value>
+		<Value xsi:type="xs:string">Dry treatment</Value>
+		<Value xsi:type="xs:string">Climbing ropes</Value>
+		<Value xsi:type="xs:string">Dynamic</Value>
+		<Value xsi:type="xs:string">No</Value>
+		<Value xsi:type="xs:decimal">0</Value>
+		<Value xsi:type="xs:string">PT-2026-11-A</Value>
+	</row>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0143</Value>
+		<Value xsi:type="xs:string">2026-11-07</Value>
+		<Value xsi:type="xs:decimal">60</Value>
+		<Value xsi:type="xs:string">ST-11-50</Value>
+		<Value xsi:type="xs:string">Static rope 11 mm, 50 m</Value>
+		<Value xsi:type="xs:decimal">58</Value>
+		<Value xsi:type="xs:string">MAT-PES-Y</Value>
+		<Value xsi:type="xs:string">Polyester yarn</Value>
+		<Value xsi:type="xs:string">kg</Value>
+		<Value xsi:type="xs:string">50</Value>
+		<Value xsi:type="xs:string">Braiding > Packing</Value>
+		<Value xsi:type="xs:string">Work ropes</Value>
+		<Value xsi:type="xs:string">Static</Value>
+		<Value xsi:type="xs:string">No</Value>
+		<Value xsi:type="xs:decimal">20</Value>
+		<Value xsi:type="xs:string">PT-2026-11-B</Value>
+	</row>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0143</Value>
+		<Value xsi:type="xs:string">2026-11-07</Value>
+		<Value xsi:type="xs:decimal">60</Value>
+		<Value xsi:type="xs:string">ST-11-50</Value>
+		<Value xsi:type="xs:string">Static rope 11 mm, 50 m</Value>
+		<Value xsi:type="xs:decimal">1</Value>
+		<Value xsi:type="xs:string">MAT-COIL-50</Value>
+		<Value xsi:type="xs:string">Coil label 50 m</Value>
+		<Value xsi:type="xs:string">pcs</Value>
+		<Value xsi:type="xs:string">50</Value>
+		<Value xsi:type="xs:string">Packing</Value>
+		<Value xsi:type="xs:string">Work ropes</Value>
+		<Value xsi:type="xs:string">Static</Value>
+		<Value xsi:type="xs:string">Yes</Value>
+		<Value xsi:type="xs:decimal">20</Value>
+		<Value xsi:type="xs:string">PT-2026-11-B</Value>
+	</row>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0144</Value>
+		<Value xsi:type="xs:string">2026-11-10</Value>
+		<Value xsi:type="xs:decimal">120</Value>
+		<Value xsi:type="xs:string">AC-6-5</Value>
+		<Value xsi:type="xs:string">Accessory cord 6 mm, 5 m</Value>
+		<Value xsi:type="xs:decimal">5.2</Value>
+		<Value xsi:type="xs:string">MAT-PA6-Y</Value>
+		<Value xsi:type="xs:string">Polyamide 6 yarn</Value>
+		<Value xsi:type="xs:string">kg</Value>
+		<Value xsi:type="xs:string">5</Value>
+		<Value xsi:type="xs:string">Braiding > Cutting > Packing</Value>
+		<Value xsi:type="xs:string">Accessory cords</Value>
+		<Value xsi:type="xs:string">Cord</Value>
+		<Value xsi:type="xs:string">No</Value>
+		<Value xsi:type="xs:decimal">0</Value>
+		<Value xsi:type="xs:string">PT-2026-11-C</Value>
+	</row>
+	<row>
+		<Value xsi:type="xs:string">ORD-2026-0144</Value>
+		<Value xsi:type="xs:string">2026-11-10</Value>
+		<Value xsi:type="xs:decimal">120</Value>
+		<Value xsi:type="xs:string">AC-6-5</Value>
+		<Value xsi:type="xs:string">Accessory cord 6 mm, 5 m</Value>
+		<Value xsi:type="xs:decimal">2</Value>
+		<Value xsi:type="xs:string">MAT-TIP-6</Value>
+		<Value xsi:type="xs:string">Heat-shrink end tip</Value>
+		<Value xsi:type="xs:string">pcs</Value>
+		<Value xsi:type="xs:string">5</Value>
+		<Value xsi:type="xs:string">Cutting</Value>
+		<Value xsi:type="xs:string">Accessory cords</Value>
+		<Value xsi:type="xs:string">Cord</Value>
+		<Value xsi:type="xs:string">No</Value>
+		<Value xsi:type="xs:decimal">0</Value>
+		<Value xsi:type="xs:string">PT-2026-11-C</Value>
+	</row>
+</ValueTable>
