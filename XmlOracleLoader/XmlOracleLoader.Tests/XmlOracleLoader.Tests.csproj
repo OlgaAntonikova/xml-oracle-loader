@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\XmlOracleLoader.Core\XmlOracleLoader.Core.csproj" />
+    <ProjectReference Include="..\XmlOracleLoader.ViewModels\XmlOracleLoader.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
