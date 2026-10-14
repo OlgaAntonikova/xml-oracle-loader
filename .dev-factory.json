@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "build": ["dotnet", "build", "XmlOracleLoader/XmlOracleLoader.sln"],
+  "test": ["dotnet", "test", "XmlOracleLoader/XmlOracleLoader.sln"],
+  "sourceExtensions": [".cs", ".xaml"]
+}
