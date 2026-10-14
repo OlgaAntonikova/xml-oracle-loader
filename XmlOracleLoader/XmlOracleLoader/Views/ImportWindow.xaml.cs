@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
@@ -68,9 +67,11 @@ namespace XmlOracleLoader.Views
         private void SaveMaterialsToOracle(List<ItemNode> materials)
         {
             var i = 1;
-            // Read App.config
-            var ipAddress = ConfigurationManager.AppSettings["DbHost"];
-            var writer = new DbWriter(ipAddress);
+            var settings = AppDbSettings.TryLoad();
+            if (settings == null)
+                return;
+
+            var writer = new DbWriter(settings);
 
             foreach (var material in materials)
             {
@@ -85,9 +86,11 @@ namespace XmlOracleLoader.Views
         private void SaveProductsToOracle(List<ItemNode> products)
         {
             var i = 1;
-            // Read App.config
-            var ipAddress = ConfigurationManager.AppSettings["DbHost"];
-            var writer = new DbWriter(ipAddress);
+            var settings = AppDbSettings.TryLoad();
+            if (settings == null)
+                return;
+
+            var writer = new DbWriter(settings);
 
             foreach (var product in products)
             {

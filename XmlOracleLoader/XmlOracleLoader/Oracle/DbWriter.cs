@@ -1,12 +1,13 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System.Globalization;
+using XmlOracleLoader.Core.Data;
 using XmlOracleLoader.Core.Models;
 
 namespace XmlOracleLoader.Oracle
 {
    internal class DbWriter : DbConnector
     {
-        public DbWriter(string ipAddress) : base(ipAddress) { }
+        public DbWriter(DbSettings settings) : base(settings) { }
 
         internal void WriteToDB(ItemNode item, int j)
         {
