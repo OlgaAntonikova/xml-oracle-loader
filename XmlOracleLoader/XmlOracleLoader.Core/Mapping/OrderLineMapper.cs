@@ -37,44 +37,44 @@ namespace XmlOracleLoader.Core.Mapping
             string Text(string column) =>
                 row.Properties.TryGetValue(column, out var value) ? value.Trim() : "";
 
-            string Required(string column)
+            string Required(string column, string label)
             {
                 var value = Text(column);
                 if (value.Length == 0)
-                    errors.Add($"'{column}' is empty");
+                    errors.Add($"{label} is empty");
                 return value;
             }
 
-            decimal Number(string column, bool required)
+            decimal Number(string column, string label, bool required)
             {
                 var value = Text(column);
                 if (value.Length == 0)
                 {
                     if (required)
-                        errors.Add($"'{column}' is empty");
+                        errors.Add($"{label} is empty");
                     return 0m;
                 }
 
                 if (!TryParseNumber(value, out var number))
                 {
-                    errors.Add($"'{column}' is not a number: '{value}'");
+                    errors.Add($"{label} is not a number: '{value}'");
                     return 0m;
                 }
 
                 if (number < 0)
-                    errors.Add($"'{column}' is negative: {value}");
+                    errors.Add($"{label} is negative: {value}");
 
                 return number;
             }
 
             var line = new OrderLine
             {
-                OrderNumber = Required(OneCColumns.OrderNumber),
+                OrderNumber = Required(OneCColumns.OrderNumber, "Order number"),
                 ShipmentDate = Text(OneCColumns.ShipmentDate),
-                Quantity = Number(OneCColumns.Quantity, required: true),
-                ProductCode = Required(OneCColumns.ProductCode),
+                Quantity = Number(OneCColumns.Quantity, "Quantity", required: true),
+                ProductCode = Required(OneCColumns.ProductCode, "Product code"),
                 ProductName = Text(OneCColumns.ProductName),
-                QuantityPerProduct = Number(OneCColumns.QuantityPerProduct, required: false),
+                QuantityPerProduct = Number(OneCColumns.QuantityPerProduct, "Quantity per product", required: false),
                 MaterialCode = Text(OneCColumns.MaterialCode),
                 MaterialName = Text(OneCColumns.MaterialName),
                 UnitOfMeasure = Text(OneCColumns.UnitOfMeasure),
@@ -83,7 +83,7 @@ namespace XmlOracleLoader.Core.Mapping
                 ProductGroup = Text(OneCColumns.ProductGroup),
                 ProductClass = Text(OneCColumns.ProductClass),
                 IsPackaging = Text(OneCColumns.IsPackaging),
-                ShippedQuantity = Number(OneCColumns.ShippedQuantity, required: false),
+                ShippedQuantity = Number(OneCColumns.ShippedQuantity, "Shipped quantity", required: false),
                 ProductionTask = Text(OneCColumns.ProductionTask)
             };
 

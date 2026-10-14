@@ -101,10 +101,13 @@ namespace XmlOracleLoader.Tests
             Assert.False(row.IsValid);
             Assert.Equal(2, row.RowNumber);
             Assert.Equal(4, row.Errors.Count);
-            Assert.Contains(row.Errors, e => e.Contains(OneCColumns.OrderNumber));
-            Assert.Contains(row.Errors, e => e.Contains(OneCColumns.ProductCode));
-            Assert.Contains(row.Errors, e => e.Contains("not a number: 'ten'"));
-            Assert.Contains(row.Errors, e => e.Contains("negative"));
+            Assert.Equal(new[]
+            {
+                "Order number is empty",
+                "Quantity is not a number: 'ten'",
+                "Product code is empty",
+                "Shipped quantity is negative: -3"
+            }, row.Errors);
         }
 
         [Fact]
