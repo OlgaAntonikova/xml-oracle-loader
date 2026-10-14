@@ -1,10 +1,10 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
-using XmlOracleLoader.Core.Models;
-using XmlOracleLoader.Oracle;
+using XmlOracleLoader.Core.Mapping;
 using XmlOracleLoader.Core.Services;
+using XmlOracleLoader.Oracle;
 
 namespace XmlOracleLoader.Views
 {
@@ -18,7 +18,7 @@ namespace XmlOracleLoader.Views
             InitializeComponent();
         }
 
-        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        private async void ImportButton_Click(object sender, RoutedEventArgs e)
         {
             string? selectedType = (DataTypeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
 
@@ -29,76 +29,49 @@ namespace XmlOracleLoader.Views
             }
 
             var dialog = new OpenFileDialog { Filter = "XML Files (*.xml)|*.xml" };
-            if (dialog.ShowDialog() == true)
-            {
-                string filePath = dialog.FileName;
+            if (dialog.ShowDialog() != true)
+                return;
 
-                if (selectedType == "Materials")
-                {
-                    var materials = LoadItemsFromXml(filePath);
-                    SaveMaterialsToOracle(materials);
-                }
-                else if (selectedType == "Products")
-                {
-                    var products = LoadItemsFromXml(filePath);
-                    SaveProductsToOracle(products);
-                }
-            }
-
-            // Close window
-            this.Close();
-        }
-
-        //XML Loading Methods:
-        //For materials
-        //For products
-        //TODO: In the future it will be two different methods
-        private List<ItemNode> LoadItemsFromXml(string path)
-        {
-            var parser = new XmlValueTableParser();
-            var doc = XDocument.Load(path);
-            List<ItemNode> items = parser.Parse(doc);
-            return items;
-        }
-
-        //Oracle Storage Methods:
-        //For materials
-        //TODO: In the future it will be different method
-        private void SaveMaterialsToOracle(List<ItemNode> materials)
-        {
-            var i = 1;
             var settings = AppDbSettings.TryLoad();
             if (settings == null)
                 return;
 
-            var writer = new DbWriter(settings);
-
-            foreach (var material in materials)
+            try
             {
-                writer.WriteToDB(material, i);
-                i++;
+                var parser = new XmlValueTableParser();
+                var items = parser.Parse(XDocument.Load(dialog.FileName));
+
+                var mapper = new OrderLineMapper();
+                var missingColumns = mapper.FindMissingColumns(parser.ColumnNames);
+                if (missingColumns.Count > 0)
+                {
+                    MessageBox.Show("The file has no required columns: " + string.Join(", ", missingColumns),
+                        "Import", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                var rows = mapper.Map(items);
+                var invalid = rows.Where(r => !r.IsValid).ToList();
+                if (invalid.Count > 0)
+                {
+                    var details = string.Join("\n", invalid.Take(10)
+                        .Select(r => $"Row {r.RowNumber}: {string.Join("; ", r.Errors)}"));
+                    MessageBox.Show($"{invalid.Count} row(s) are invalid, nothing was imported.\n\n{details}",
+                        "Import", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                var repository = new OracleOrderLineRepository(settings);
+                var inserted = await repository.InsertAsync(rows.Select(r => r.Line).ToList());
+
+                MessageBox.Show($"{inserted} row(s) saved to the database.", $"Import {selectedType.ToLowerInvariant()} completed",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
             }
-
-            MessageBox.Show($"Data successfully saved to the database", "Import materials completed", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        //For products
-        private void SaveProductsToOracle(List<ItemNode> products)
-        {
-            var i = 1;
-            var settings = AppDbSettings.TryLoad();
-            if (settings == null)
-                return;
-
-            var writer = new DbWriter(settings);
-
-            foreach (var product in products)
+            catch (Exception ex)
             {
-                writer.WriteToDB(product, i);
-                i++;
+                MessageBox.Show(ex.Message, "Import failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            MessageBox.Show($"Data successfully saved to the database", "Import products completed", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

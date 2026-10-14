@@ -1,8 +1,8 @@
-﻿using System.Configuration;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
+using XmlOracleLoader.Core.Mapping;
 using XmlOracleLoader.Core.Models;
 using XmlOracleLoader.Oracle;
 
@@ -18,9 +18,9 @@ namespace XmlOracleLoader.Views
             InitializeComponent();
         }
 
-        private void ExportButton_Click(object sender, RoutedEventArgs e)
+        private async void ExportButton_Click(object sender, RoutedEventArgs e)
         {
-            string selectedType = (DataTypeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            string? selectedType = (DataTypeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
 
             if (string.IsNullOrEmpty(selectedType))
             {
@@ -28,31 +28,33 @@ namespace XmlOracleLoader.Views
                 return;
             }
 
-            if (selectedType == "Material map")
-            {
-                var items = LoadItemsFromDb();
-                CreateXml(items, selectedType);
-            }
-            else if (selectedType == "Warehouse status")
-            {
-                var items = LoadItemsFromDb();
-                CreateXml(items, selectedType);
-            }
+            var settings = AppDbSettings.TryLoad();
+            if (settings == null)
+                return;
 
-            // Close window
-            this.Close();
+            try
+            {
+                var lines = await new OracleOrderLineRepository(settings).GetAllAsync();
+                var mapper = new OrderLineMapper();
+                CreateXml(lines.Select(mapper.ToItemNode).ToList(), selectedType);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Export failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         // Create Xml
-        private void CreateXml(List<ItemNode> items, string selectedType)
+        private static void CreateXml(List<ItemNode> items, string selectedType)
         {
             string downloadsPath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                 "Downloads"
             );
-            
+
             string fileName = $"{selectedType}_{DateTime.Now:yyyyMMdd_HHmmss}.xml";
-            
+
             string filePath = Path.Combine(downloadsPath, fileName);
 
             var root = new XElement("Items");
@@ -73,18 +75,6 @@ namespace XmlOracleLoader.Views
             doc.Save(filePath);
 
             MessageBox.Show($"The file was saved successfully:\n{filePath}", "Export completed", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        // Read data from DB
-        private List<ItemNode> LoadItemsFromDb()
-        {
-            var settings = AppDbSettings.TryLoad();
-            if (settings == null)
-                return new List<ItemNode>();
-
-            var reader = new DbReader(settings);
-
-            return reader.ReadFromDB();
         }
     }
 }
